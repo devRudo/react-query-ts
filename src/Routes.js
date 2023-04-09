@@ -5,6 +5,7 @@ import Home from './Home';
 import PaginatedQueries from './PaginatedQueries';
 import Queries from './Queries';
 import InfinitePaginatedQueries from './InfinitePaginatedQueries';
+import Mutations from './Mutations';
 
 const Routes = () => {
   return (
@@ -23,6 +24,9 @@ const Routes = () => {
       </Route>
       <Route path="/infinite-paginated-queries">
         <InfinitePaginatedQueries />
+      </Route>
+      <Route path="/mutations">
+        <Mutations />
       </Route>
     </Switch>
   );
