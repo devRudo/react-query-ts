@@ -1,74 +1,91 @@
 # Getting Started with React Query
 
+React Query will likely:
+
+* Help you remove many lines of complicated and misunderstood code from your application and replace with just a handful of lines of React Query logic.
+* Make your application more maintainable and easier to build new features without worrying about wiring up new server state data sources
+* Have a direct impact on your end-users by making your application feel faster and more responsive than ever before.
+* Potentially help you save on bandwidth and increase memory performance
+
+Installation
+
+```
+npm i @tanstack/react-query
+```
+
+Requirements
+
+```
+Chrome >= 73
+Firefox >= 78
+Edge >= 79
+Safari >= 12.0
+iOS >= 12.0
+opera >= 53
+```
+Quick Start
+
 3 core concepts of react query
 * Queries
 * Mutations
 * Query Validation
-<!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Dev Tools
 
-In the project directory, you can run:
+```
+npm i @tanstack/react-query-devtools
+```
 
-### `npm start`
+```
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* The rest of your application */}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  )
+}
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Comparison | React Query vs SWR vs Apollo vs RTK Query vs React Router
+https://tanstack.com/query/latest/docs/react/comparison
 
-### `npm test`
+Important Defaults
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Query instances via useQuery or useInfiniteQuery by default consider cached data as stale.
+```
+To change this behavior, you can configure your queries both globally and per-query using the staleTime option. Specifying a longer staleTime means queries will not refetch their data as often
+```
 
-### `npm run build`
+* Stale queries are refetched automatically in the background when:
+    * New instances of the query mount
+    * The window is refocused
+    * The network is reconnected
+    * The query is optionally configured with a refetch interval
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+To change this functionality, you can use options like refetchOnMount, refetchOnWindowFocus, refetchOnReconnect and refetchInterval.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Query results that have no more active instances of useQuery, useInfiniteQuery or query observers are labeled as "inactive" and remain in the cache in case they are used again at a later time.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* By default, "inactive" queries are garbage collected after 5 minutes.
 
-### `npm run eject`
+```
+To change this, you can alter the default cacheTime for queries to something other than 1000 * 60 * 5 milliseconds.
+```
+* Queries that fail are silently retried 3 times, with exponential backoff delay before capturing and displaying an error to the UI.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+To change this, you can alter the default retry and retryDelay options for queries to something other than 3 and the default exponential backoff function.
+```
+* Query results by default are structurally shared to detect if data has actually changed and if not, the data reference remains unchanged to better help with value stabilization with regards to useMemo and useCallback. If this concept sounds foreign, then don't worry about it! 99.9% of the time you will not need to disable this and it makes your app more performant at zero cost to you.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Some important references
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+https://tkdodo.eu/blog/practical-react-query
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+https://tkdodo.eu/blog/react-query-as-a-state-manager
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->

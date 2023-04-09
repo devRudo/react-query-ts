@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import axios from 'axios';
+import Main from './Layout/Main';
 
 const FullFunctioningExample = () => {
   const queryClient = useQueryClient();
@@ -22,7 +23,7 @@ const FullFunctioningExample = () => {
   if (error) return 'An error occurred. Please try again ....';
 
   return (
-    <div>
+    <Main>
       <ul>
         {data?.map((todo) => (
           <li key={todo.id}>{todo.title}</li>
@@ -39,7 +40,7 @@ const FullFunctioningExample = () => {
       >
         Add Todo
       </button> */}
-    </div>
+    </Main>
   );
 };
 
