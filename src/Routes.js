@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import FullFunctioningExample from './FullFunctioningExample';
 import Home from './Home';
+import PaginatedQueries from './PaginatedQueries';
 import Queries from './Queries';
 
 const Routes = () => {
@@ -15,6 +16,9 @@ const Routes = () => {
       </Route>
       <Route path="/queries">
         <Queries />
+      </Route>
+      <Route path="/paginated-queries">
+        <PaginatedQueries />
       </Route>
     </Switch>
   );

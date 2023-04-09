@@ -31,6 +31,9 @@ const Main = ({ children }) => {
           <Link to="/queries">
             <p style={{ color: '#fff' }}>Queries</p>
           </Link>
+          <Link to="/paginated-queries">
+            <p style={{ color: '#fff' }}>Paginated Queries</p>
+          </Link>
         </div>
       </aside>
       <main
