@@ -34,6 +34,9 @@ const Main = ({ children }) => {
           <Link to="/paginated-queries">
             <p style={{ color: '#fff' }}>Paginated Queries</p>
           </Link>
+          <Link to="/infinite-paginated-queries">
+            <p style={{ color: '#fff' }}>Infinite Paginated Queries</p>
+          </Link>
         </div>
       </aside>
       <main

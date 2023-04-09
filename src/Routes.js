@@ -4,6 +4,7 @@ import FullFunctioningExample from './FullFunctioningExample';
 import Home from './Home';
 import PaginatedQueries from './PaginatedQueries';
 import Queries from './Queries';
+import InfinitePaginatedQueries from './InfinitePaginatedQueries';
 
 const Routes = () => {
   return (
@@ -19,6 +20,9 @@ const Routes = () => {
       </Route>
       <Route path="/paginated-queries">
         <PaginatedQueries />
+      </Route>
+      <Route path="/infinite-paginated-queries">
+        <InfinitePaginatedQueries />
       </Route>
     </Switch>
   );
